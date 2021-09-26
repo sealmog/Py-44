@@ -29,7 +29,7 @@ class VKPhotos:
         }
 
         r = requests.get(photos_url,
-                           params={**self.params, **photos_params})
+                         params={**self.params, **photos_params})
         if r.status_code == 200:
             logging.info(f'Get photos URL: {r.url}, status: {r.status_code}')
         else:
@@ -46,7 +46,8 @@ class VKPhotos:
 
             r = requests.get(i['sizes'][-1]['url'], stream=True)
             if r.status_code == 200:
-                logging.info(f"Get photos URL: {r.url}, status: {r.status_code}")
+                logging.info(f'Get photos URL: {r.url}, '
+                             f'status: {r.status_code}')
 
                 photos_lst += [{
                     'date': i['date'],
@@ -73,27 +74,31 @@ class YaDisk:
         rf = requests.get(f'{self.url}?path={folder}', headers=self.headers)
 
         if rf.status_code == 200:
-            logging.info(f'Folder {folder} exist: {rf.url}, status: {rf.status_code}')
+            logging.info(f'Folder {folder} exist: {rf.url}, '
+                         f'status: {rf.status_code}')
         else:
             rf = requests.put(f'{rf.url}', headers=self.headers)
             rf_json = rf.json()
             if 'error' in rf_json.keys():
-                logging.error(f"Create folder {folder}: {rf.url}, status: {rf.status_code} {rf_json['error']}")
+                logging.error(f"Create folder {folder}: {rf.url}, "
+                              f"status: {rf.status_code} {rf_json['error']}")
                 resp_dct[folder] = rf_json['error']
                 return resp_dct
             else:
-                logging.info(f"Create folder {folder}: {rf.url}, status: {rf.status_code}")
-
+                logging.info(f'Create folder {folder}: {rf.url}, '
+                             f'status: {rf.status_code}')
 
         for i in photos_lst:
 
             filename = str(i["date"]) + '.jpg'
             r = requests.get(f'{self.url}/upload?path={folder}'
-                             f'/{filename}&overwrite={replace}', headers=self.headers)
+                             f'/{filename}&overwrite={replace}',
+                             headers=self.headers)
             r_json = r.json()
 
             if 'error' in r_json.keys():
-                logging.warning(f"Get photo {filename}: {r.url}, status: {r.status_code} {r_json['error']}")
+                logging.warning(f"Get photo {filename}: {r.url}, "
+                                f"status: {r.status_code} {r_json['error']}")
 
                 resp_lst += [{
                     'file_name': filename,
@@ -116,17 +121,22 @@ class YaDisk:
 
 if __name__ == '__main__':
     logger = logging.getLogger('logger')
-    logging.basicConfig(level=logging.INFO, filename='app.log',
-                        filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=logging.INFO,
+                        filename='app.log', filemode='w',
+                        format='%(name)s - %(levelname)s - %(message)s')
 
     today = date.today()
     folder = today.strftime('%Y%m%d')
 
     parser = argparse.ArgumentParser()
-    # parser.add_argument('-c', '--cloud', required=True, help='Cloud Storage: Yandex or Google')
-    parser.add_argument('-n', '--number', help='Number of files for upload', default=5)
-    parser.add_argument('-vkt', '--vk_token', required=True, help='VK token')
-    parser.add_argument('-cdt', '--cd_token', required=True, help='Yandex Disk or Google Drive token')
+    # parser.add_argument('-c', '--cloud', required=True,
+    #                     help='Cloud Storage: Yandex or Google')
+    parser.add_argument('-n', '--number',
+                        help='Number of files for upload', default=5)
+    parser.add_argument('-vkt', '--vk_token', required=True,
+                        help='VK token')
+    parser.add_argument('-cdt', '--cd_token', required=True,
+                        help='Yandex Disk or Google Drive token')
     args = parser.parse_args()
 
     vk_client = VKPhotos(token=args.vk_token, number=int(args.number))
