@@ -4,7 +4,7 @@ from pprint import pprint
 from datetime import date
 import logging
 import json
-from task_9_gd import GoogleDrive
+from cp_photo_gd import GoogleDrive
 
 
 class VKPhotos:
