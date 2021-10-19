@@ -37,9 +37,14 @@ CREATE TABLE if NOT EXISTS Albums (
 CREATE TABLE if NOT EXISTS Tracks (
     track_id serial PRIMARY KEY,
     track VARCHAR (42) NOT NULL,
-    author_id INTEGER NOT NULL REFERENCES Authors(author_id),
     album_id INTEGER NOT NULL REFERENCES Albums(album_id),
     duration INTERVAL NOT NULL
+);
+
+CREATE TABLE if NOT EXISTS Collections (
+    collection_id serial PRIMARY KEY,
+    collection VARCHAR (42) NOT NULL,
+    album_year INTEGER CHECK (album_year > 1100 and album_year < 2100) NOT NULL
 );
 
 CREATE TABLE if NOT EXISTS AuthorGenres (
@@ -54,11 +59,8 @@ CREATE TABLE if NOT EXISTS AlbumAuthors (
     album_id INTEGER NOT NULL REFERENCES Albums(album_id)
 );
 
-CREATE TABLE if NOT EXISTS Collections (
-    collection_id serial PRIMARY KEY,
-    collection VARCHAR (42) NOT NULL,
-    album_year INTEGER CHECK (album_year > 1100 and album_year < 2100) NOT NULL,
-    track_id INTEGER NOT NULL REFERENCES Tracks(track_id),
-    album_id INTEGER NOT NULL REFERENCES Albums(album_id)
+CREATE TABLE if NOT EXISTS TrackCollections (
+    id serial PRIMARY KEY,
+    collection_id INTEGER NOT NULL REFERENCES Collections(collection_id),
+    track_id INTEGER NOT NULL REFERENCES Tracks(track_id)
 );
-
