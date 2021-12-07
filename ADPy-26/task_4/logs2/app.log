@@ -1,0 +1,8 @@
+2021-11-29 23:28:15.274 | DEBUG    | __main__:<module>:20 - Entering 'flat_generator' (args=([['a', 'b', 'c'], ['d', 'e', 'f'], [1, 2, None]],), kwargs={})
+2021-11-29 23:28:15.274 | DEBUG    | __main__:<module>:20 - Exiting 'flat_generator' (result=<generator object flat_generator at 0x7f5abee99f20>)
+2021-11-29 23:28:15.279 | DEBUG    | __main__:flat_generator:14 - Entering 'flat_generator' (args=(['a', 'b', 'c'],), kwargs={})
+2021-11-29 23:28:15.279 | DEBUG    | __main__:flat_generator:14 - Exiting 'flat_generator' (result=<generator object flat_generator at 0x7f5abe4b1190>)
+2021-11-29 23:28:15.284 | DEBUG    | __main__:flat_generator:14 - Entering 'flat_generator' (args=(['d', 'e', 'f'],), kwargs={})
+2021-11-29 23:28:15.284 | DEBUG    | __main__:flat_generator:14 - Exiting 'flat_generator' (result=<generator object flat_generator at 0x7f5abe4b1190>)
+2021-11-29 23:28:15.289 | DEBUG    | __main__:flat_generator:14 - Entering 'flat_generator' (args=([1, 2, None],), kwargs={})
+2021-11-29 23:28:15.289 | DEBUG    | __main__:flat_generator:14 - Exiting 'flat_generator' (result=<generator object flat_generator at 0x7f5abe4b1190>)
