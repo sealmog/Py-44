@@ -136,3 +136,4 @@ lib/
 lib64
 pyvenv.cfg
 .ipynb_checkpoints
+*.token

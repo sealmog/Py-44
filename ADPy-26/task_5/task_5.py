@@ -83,7 +83,8 @@ def main():
         print(f'Document find in shelf: {find_shelf_by_document(document_number)}')
 
     elif user_input == 'l' or user_input == 'list':
-        print(*print_documents(), sep=";\n")
+        # print(*print_documents(), sep=";\n")
+        print(print_documents())
 
     elif user_input == 'a' or user_input == 'add':
         document_type = input("Enter document type: ")
