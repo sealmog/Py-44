@@ -74,8 +74,7 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
     def __str__(self):
-           res = f'Имя: {self.name} \nФамилия: {self.surname}\n'
-           return res
+        return f'Имя: {self.name} \nФамилия: {self.surname}\n'
 
 
 def avg_grade(lst):

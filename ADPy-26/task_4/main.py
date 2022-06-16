@@ -20,3 +20,13 @@ if __name__ == '__main__':
     for item in flat_generator(nested_list_v1):
         # print(item)
         pass
+
+    dct = {
+        'Name': {'One': 'Two'},
+        'Male': True,
+        24: '25',
+        ('lst', None): ['a', 'b', 1, True],
+        "Pet": None
+    }
+
+    print(dct)
