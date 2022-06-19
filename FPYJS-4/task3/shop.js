@@ -122,7 +122,7 @@ class Basket {
         if (this.goods.length > 0) {
             const totalAmount = this.goods.reduce(
                 function (sum, current) {
-                    return sum + current.good.price
+                    return sum + current.good.price * current.amount
                 }, 0
             );
             return {
