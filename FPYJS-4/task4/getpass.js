@@ -16,19 +16,20 @@
 чтобы убедиться в корректности их работы.
  */
 
+
+const reader = require("readline-sync");
+
 function getPasswordChecker(password) {
-    let p = 'password';
+    let answer = reader.question("Enter password: ");
+
     return function passwordChecker() {
-        if (password === p) {
+        if (password === answer) {
             return true
         }
         return false
     }
 }
 
-let re = getPasswordChecker('p').call()
-console.log(re)
-
-re = getPasswordChecker('password').call()
-console.log(re)
+let re = getPasswordChecker('password')
+console.log(re())
 
