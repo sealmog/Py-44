@@ -17,12 +17,8 @@
  */
 
 
-const reader = require("readline-sync");
-
 function getPasswordChecker(password) {
-    let answer = reader.question("Enter password: ");
-
-    return function passwordChecker() {
+    return function passwordChecker(answer) {
         if (password === answer) {
             return true
         }
@@ -31,5 +27,6 @@ function getPasswordChecker(password) {
 }
 
 let re = getPasswordChecker('password')
-console.log(re())
+console.log(re('pass'))
+console.log(re('password'))
 
